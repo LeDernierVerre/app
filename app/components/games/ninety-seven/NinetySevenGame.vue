@@ -1,26 +1,26 @@
 <template>
-  <NinetySeventyTurnResultOverlay
+  <NinetySevenTurnResultOverlay
     v-if="turnResultData"
     v-model:open="isTurnResultOpen"
     v-bind="turnResultData"
     @acknowledge="turnResultData = null"
   />
 
-  <NinetySeventyGameEnd
+  <NinetySevenGameEnd
     v-model:open="isGameEndOpen"
     :result="gameResult"
     @home="goHome"
   />
 
-  <NinetySeventyTotalGuess
+  <NinetySevenTotalGuess
     v-model="announcedTotal"
     v-model:open="isAnnouncedTotalOpened"
-    :min="NINETY_SEVENTY_MIN_GUESS"
-    :max="NINETY_SEVENTY_MAX_GUESS"
+    :min="NINETY_SEVEN_MIN_GUESS"
+    :max="NINETY_SEVEN_MAX_GUESS"
     @confirm="dropCard"
   />
 
-  <NinetySeventyJackChoice
+  <NinetySevenJackChoice
     v-model:open="isJackChoiceOpen"
     :suit="selectedCard?.suit"
     @confirm="onJackChoice"
@@ -37,12 +37,12 @@
       @on-drop="startDropFlow"
     />
 
-    <NinetySeventyPlayersLayout
+    <NinetySevenPlayersLayout
       :players="publicData.players ?? []"
       :current-player-idx="publicData.currentPlayerIdx ?? 0"
     />
 
-    <NinetySeventyPlayerHUD
+    <NinetySevenPlayerHUD
       v-if="canPlay"
       :cards="handCards"
       :selected-card-idx="selectedCardIdx"
@@ -53,13 +53,13 @@
 
 <script lang="ts" setup>
 import {
-  NINETY_SEVENTY_MAX_GUESS,
-  NINETY_SEVENTY_MIN_GUESS,
-  type NinetySeventyAction,
-  type NinetySeventyPrivateData,
-  type NinetySeventyPublicData,
-  type NinetySeventyTurnResult,
-  type NinetySeventyTurnResultOverlayData
+  NINETY_SEVEN_MAX_GUESS,
+  NINETY_SEVEN_MIN_GUESS,
+  type NinetySevenAction,
+  type NinetySevenPrivateData,
+  type NinetySevenPublicData,
+  type NinetySevenTurnResult,
+  type NinetySevenTurnResultOverlayData
 } from '~/types/games/ninety-seventy.js'
 
 import type { Card } from '~/types/cards.js'
@@ -67,13 +67,13 @@ import type { Card } from '~/types/cards.js'
 import { useAuth } from '~/composables/core/useAuth.js'
 
 import CardPiles from '../shared/cards/CardPiles.vue'
-import NinetySeventyPlayersLayout from './NinetySeventyPlayersLayout.vue'
-import NinetySeventyPlayerHUD from './NinetySeventyPlayerHUD.vue'
-import NinetySeventyTotalGuess from './NinetySeventyTotalGuess.vue'
-import NinetySeventyJackChoice from './NinetySeventyJackChoice.vue'
-import NinetySeventyTurnResultOverlay from './NinetySeventyTurnResultOverlay.vue'
-import NinetySeventyGameEnd from './NinetySeventyGameEnd.vue'
 import type { GamePropsData, GameSessionPlayer } from '../../../types/games.js'
+import NinetySevenTurnResultOverlay from './NinetySevenTurnResultOverlay.vue'
+import NinetySevenGameEnd from './NinetySevenGameEnd.vue'
+import NinetySevenTotalGuess from './NinetySevenTotalGuess.vue'
+import NinetySevenJackChoice from './NinetySevenJackChoice.vue'
+import NinetySevenPlayersLayout from './NinetySevenPlayersLayout.vue'
+import NinetySevenPlayerHUD from './NinetySevenPlayerHUD.vue'
 
 type JackChoice = -10 | 10
 
@@ -85,12 +85,12 @@ type NinetySeventyGameResult = {
 }
 
 const props = defineProps<GamePropsData<
-  NinetySeventyPrivateData,
-  NinetySeventyPublicData
+  NinetySevenPrivateData,
+  NinetySevenPublicData
 >>()
 
 const router = useRouter()
-const { sendAction } = useGameSocket<NinetySeventyAction>()
+const { sendAction } = useGameSocket<NinetySevenAction>()
 const auth = useAuth()
 
 const selfPlayerId = computed(() => {
@@ -103,7 +103,7 @@ const selfUsername = computed(() => {
 
 const cardPilesRef = ref<InstanceType<typeof CardPiles> | null>(null)
 
-const publicData = ref<(NinetySeventyPublicData & {
+const publicData = ref<(NinetySevenPublicData & {
   isFinished?: boolean
   gameResult?: NinetySeventyGameResult | null
 }) | null>(null)
@@ -121,7 +121,7 @@ const isJackChoiceOpen = ref<boolean>(false)
 const jackChoice = ref<JackChoice | null>(null)
 
 const isTurnResultOpen = ref(false)
-const turnResultData = ref<NinetySeventyTurnResultOverlayData | null>(null)
+const turnResultData = ref<NinetySevenTurnResultOverlayData | null>(null)
 const lastShownTurnResultId = ref<string | null>(null)
 
 const isGameEndOpen = ref(false)
@@ -197,7 +197,7 @@ const goHome = async () => {
   await router.push('/')
 }
 
-const showTurnResult = (result: NinetySeventyTurnResult) => {
+const showTurnResult = (result: NinetySevenTurnResult) => {
   if (result.id === lastShownTurnResultId.value) {
     return
   }
@@ -216,7 +216,7 @@ const showTurnResult = (result: NinetySeventyTurnResult) => {
   isTurnResultOpen.value = true
 }
 
-const handlePublicData = (data: (NinetySeventyPublicData & {
+const handlePublicData = (data: (NinetySevenPublicData & {
   isFinished?: boolean
   gameResult?: NinetySeventyGameResult | null
 }) | null) => {
@@ -275,7 +275,7 @@ const initHand = (cards: Card[]) => {
   pendingDrawnCards.value = []
 }
 
-const handlePrivateData = (data: NinetySeventyPrivateData | null) => {
+const handlePrivateData = (data: NinetySevenPrivateData | null) => {
   if (!data) {
     return
   }

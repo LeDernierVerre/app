@@ -8,10 +8,23 @@
     leave-to-class="opacity-0"
   >
     <div
-      v-if="isLoading"
+      v-if="isLoading && !errorMessage"
       class="fixed inset-x-0 top-0 z-[9999] h-1 overflow-hidden bg-primary-500/10"
     >
       <div class="loading-bar h-full w-1/3 rounded-full bg-primary-500" />
+    </div>
+    <div
+      v-else-if="isLoading && errorMessage"
+      class="fixed inset-x-0 top-0 z-[10000] bg-error-500 px-4 py-3 text-center text-sm font-semibold text-white shadow-lg"
+    >
+      Impossible de charger la partie
+      <button
+        class="ml-2 underline underline-offset-2 hover:opacity-80"
+        @click="$router.push('/')"
+      >
+        Retour à l'accueil
+      </button>
+
     </div>
   </Transition>
 
@@ -80,13 +93,12 @@
 
 <script setup lang="ts">
 import type { Component } from 'vue'
-import NinetySeventyGame from '~/components/games/ninety-seventy/NinetySeventyGame.vue'
-import { useAuth } from '~/composables/core/useAuth'
+import NinetySevenGame from '~/components/games/ninety-seven/NinetySevenGame.vue'
 import { useSocket } from '~/composables/core/useSocket'
 import { GameEnum, type GameData } from '~/types/games'
 
 const gameComponents: Record<GameEnum, Component> = {
-  [GameEnum.NINETY_SEVEN]: NinetySeventyGame
+  [GameEnum.NINETY_SEVEN]: NinetySevenGame
 }
 
 const route = useRoute()
@@ -98,6 +110,8 @@ const currentGameId = ref<GameEnum | null>(null)
 
 const publicData = shallowRef<GameData | null>(null)
 const privateData = shallowRef<GameData | null>(null)
+
+const errorMessage = ref<boolean>(false);
 
 const isConnected = ref(false)
 const isLeaveConfirmOpen = ref(false)
@@ -131,8 +145,9 @@ const onDisconnect = () => {
   isConnected.value = false
 }
 
-const onSessionError = (error: unknown) => {
-  console.error(error)
+const onSessionError = ({error}: {error: string}) => {
+  errorMessage.value = true;
+  console.error(error);
 }
 
 const onSessionInfos = ({ gameId }: { gameId?: GameEnum }) => {

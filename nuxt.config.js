@@ -6,6 +6,17 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/i18n'
   ],
+  app: {
+    head: {
+      script: [
+        {
+          defer: true,
+          src: 'https://stats.matteogaillard.fr/script.js',
+          'data-website-id': '9986e604-0701-44ea-9bc7-049a6ff256a1'
+        }
+      ]
+    }
+  },
   i18n: {
     defaultLocale: 'fr',
     strategy: 'no_prefix',

@@ -1,7 +1,7 @@
 import type { Card } from "../cards"
 import type { GameData, GameSessionPlayer } from "../games";
 
-export interface NinetySeventyTurnResult {
+export interface NinetySevenTurnResult {
   id: string
   playedPlayer: GameSessionPlayer
   announcedTotal: number
@@ -10,7 +10,7 @@ export interface NinetySeventyTurnResult {
   isCorrect: boolean
 }
 
-export type NinetySeventyTurnResultOverlayData = {
+export type NinetySevenTurnResultOverlayData = {
   isSelf: boolean
   playerName: string
   announcedTotal: number
@@ -25,18 +25,18 @@ export type NinetySevenPenaltyData = {
   penalty?: number
 }
 
-export interface NinetySeventyPublicData extends GameData {
+export interface NinetySevenPublicData extends GameData {
   discardPile?: Card[];
   currentPlayerIdx?: number;
   direction?: -1 | 1;
 
   players?: GameSessionPlayer[];  
-  lastTurnResult?: NinetySeventyTurnResult;
+  lastTurnResult?: NinetySevenTurnResult;
 
   isFinished?: boolean;
   gameResult?: NinetySevenGameResult | null;
 }
-export interface NinetySeventyPrivateData extends GameData {
+export interface NinetySevenPrivateData extends GameData {
   cards?: Card[];
   drawnCard?: Card;
 }
@@ -48,7 +48,7 @@ export type NinetySevenGameResult = {
     };
 };
 
-export type NinetySeventyAction = 'play-card'
+export type NinetySevenAction = 'play-card'
 
-export const NINETY_SEVENTY_MIN_GUESS = 0;
-export const NINETY_SEVENTY_MAX_GUESS = 97;
+export const NINETY_SEVEN_MIN_GUESS = 0;
+export const NINETY_SEVEN_MAX_GUESS = 97;
