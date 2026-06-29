@@ -1,0 +1,74 @@
+{
+  "userGate": {
+    "title": "Choisis ton pseudo",
+    "message": "Ce pseudo sera affiché aux autres joueurs.",
+    "pseudo": "Pseudo",
+    "placeholder": "Votre pseudo",
+    "confirm": "Continuer",
+    "errors": {
+      "tooFewCharacters": "Ton pseudo doit faire au moins 2 caractères.",
+      "internalError": "Impossible de se connecter, réessaie."
+    }
+  },
+  "home": {
+    "title": "Rejoindre une salle",
+    "subtitle": "Entre le code à 6 caractères donné par l’hôte.",
+    "joinBtn": "Rejoindre",
+    "otherChoice": "ou créer une partie",
+    "errors": {
+      "roomNotFound": {
+        "title": "Salle introuvable",
+        "subtitle": "Vérifie le code et réessaie",
+        "common": "Impossible de rejoindre la salle"
+      },
+      "roomCreate": {
+        "common": "Impossible de créer la salle"
+      }
+    }
+  },
+  "games": {
+    "ninetySeventy": {
+      "end": {
+        "title": "MAIS NANN",
+        "backToHome": "Retour à l'accueil"
+      },
+      "offlinePlayers": {
+        "waiting": "En attente",
+        "disconnectedLabel": "Déconnecté",
+        "disconnected": "{player} est déconnecté, la parte reprendra quand il revient."
+      },
+      "totalGuess": {
+          "title": "C'était combien ?",
+          "subtitle": "Si tu te trompes tu bois la différence",
+          "confirm": "Valider"
+      },
+      "jackChoice": {
+        "title": "Valet joué",
+        "subtitle": "Tu choisis +10 ou -10"
+      },
+      "turnResult": {
+        "title": {
+          "correct": {
+            "self": "Bien joué",
+            "other": "{player} a réussi"
+          },
+          "incorrect": {
+            "self": "Tu t'es trompé",
+            "other": "{player} s'est trompé"
+          }
+        },
+        "subtitle": {
+          "correct": {
+            "self": "Tu avais bien annoncé {total}",
+            "other": "{player} avait bien annoncé {total}"
+          },
+          "incorrect": {
+            "self": "Tu as annoncé {total}, mais c'était {realTotal}",
+            "other": "{player} a annoncé {total} mais c'était {realTotal}"
+          }
+        },
+        "confirm": "C bon"
+      }
+    }
+  }
+}

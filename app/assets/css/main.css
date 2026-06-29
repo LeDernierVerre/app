@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme {
+  --font-sans: "Poppins", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-primary-50: #eaf4ff;
+  --color-primary-100: #d1e9ff;
+  --color-primary-200: #a9d8ff;
+  --color-primary-300: #73bfff;
+  --color-primary-400: #3ba0ff;
+  --color-primary-500: #1475e1;
+  --color-primary-600: #0f62c7;
+  --color-primary-700: #0e4fa3;
+  --color-primary-800: #103f7f;
+  --color-primary-900: #0f3468;
+  --color-primary-950: #071a36;
+
+  --color-secondary-50: #fff9e6;
+  --color-secondary-100: #ffefb8;
+  --color-secondary-200: #ffe27a;
+  --color-secondary-300: #ffd43b;
+  --color-secondary-400: #ffc107;
+  --color-secondary-500: #f6b000;
+  --color-secondary-600: #d99000;
+  --color-secondary-700: #b86f00;
+  --color-secondary-800: #93540a;
+  --color-secondary-900: #74420f;
+  --color-secondary-950: #422305;
+
+  --color-neutral-50: #f5f9fc;
+  --color-neutral-100: #e8f0f5;
+  --color-neutral-200: #cddce6;
+  --color-neutral-300: #a9bdca;
+  --color-neutral-400: #7f98a8;
+  --color-neutral-500: #557086;
+  --color-neutral-600: #3b5365;
+  --color-neutral-700: #2f4553;
+  --color-neutral-800: #213743;
+  --color-neutral-900: #0f212e;
+  --color-neutral-950: #071824;
+
+  --color-success-50: #e9ffe9;
+  --color-success-100: #c9ffc9;
+  --color-success-500: #00e701;
+  --color-success-600: #00c400;
+  --color-success-700: #009f00;
+
+  --color-error-50: #fff0f0;
+  --color-error-100: #ffd6d6;
+  --color-error-500: #ed4163;
+  --color-error-600: #d9254d;
+  --color-error-700: #ad1235;
+
+  --color-warning-50: #fff9e6;
+  --color-warning-100: #ffefb8;
+  --color-warning-500: #f6b000;
+  --color-warning-600: #d99000;
+}
+
+:root {
+  --ui-color-primary-50: var(--color-primary-50);
+  --ui-color-primary-100: var(--color-primary-100);
+  --ui-color-primary-200: var(--color-primary-200);
+  --ui-color-primary-300: var(--color-primary-300);
+  --ui-color-primary-400: var(--color-primary-400);
+  --ui-color-primary-500: var(--color-primary-500);
+  --ui-color-primary-600: var(--color-primary-600);
+  --ui-color-primary-700: var(--color-primary-700);
+  --ui-color-primary-800: var(--color-primary-800);
+  --ui-color-primary-900: var(--color-primary-900);
+  --ui-color-primary-950: var(--color-primary-950);
+
+  --ui-color-secondary-50: var(--color-secondary-50);
+  --ui-color-secondary-100: var(--color-secondary-100);
+  --ui-color-secondary-200: var(--color-secondary-200);
+  --ui-color-secondary-300: var(--color-secondary-300);
+  --ui-color-secondary-400: var(--color-secondary-400);
+  --ui-color-secondary-500: var(--color-secondary-500);
+  --ui-color-secondary-600: var(--color-secondary-600);
+  --ui-color-secondary-700: var(--color-secondary-700);
+  --ui-color-secondary-800: var(--color-secondary-800);
+  --ui-color-secondary-900: var(--color-secondary-900);
+  --ui-color-secondary-950: var(--color-secondary-950);
+
+  --ui-primary: var(--color-primary-500);
+  --ui-secondary: var(--color-secondary-500);
+}
+
+@layer base {
+  html,
+  body,
+  #__nuxt {
+    min-height: 100%;
+  }
+
+  body {
+    @apply text-white antialiased;
+    background-color: #213743;
+  }
+}
