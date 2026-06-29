@@ -73,7 +73,7 @@ import NinetySeventyTotalGuess from './NinetySeventyTotalGuess.vue'
 import NinetySeventyJackChoice from './NinetySeventyJackChoice.vue'
 import NinetySeventyTurnResultOverlay from './NinetySeventyTurnResultOverlay.vue'
 import NinetySeventyGameEnd from './NinetySeventyGameEnd.vue'
-import type { GamePropsData, GameSessionPlayer } from '~/types/games.js'
+import type { GamePropsData, GameSessionPlayer } from '../../../types/games.js'
 
 type JackChoice = -10 | 10
 
