@@ -42,13 +42,10 @@ export interface NinetySeventyPrivateData extends GameData {
 }
 
 export type NinetySevenGameResult = {
-    reason: "total-reached";
     loser: {
         id: string;
         username: string;
     };
-    finalTotal: number;
-    finishedAt: string;
 };
 
 export type NinetySeventyAction = 'play-card'

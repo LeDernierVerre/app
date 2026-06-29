@@ -59,15 +59,6 @@
           @click="createGameRoom(game.id)"
         >
           <div class="flex items-center gap-4">
-            <!-- <div class="grid size-14 shrink-0 place-items-center overflow-hidden rounded-2xl p-1 transition group-hover:bg-primary-500/20">
-              <img
-                :src="game.image"
-                :alt="game.name"
-                draggable="false"
-                class="size-[115%] -translate-y-2 object-cover transition duration-200 group-hover:scale-105"
-              >
-            </div> -->
-
             <div class="min-w-0 flex-1">
               <div class="flex items-center justify-between gap-3">
                 <div>
@@ -111,14 +102,12 @@
 </template>
 
 <script setup lang="ts">
-import ninetySevenImage from '~/assets/images/games/ninety-seventy.png'
 import { GameEnum } from '~/types/games'
 
 type GameCard = {
   id: GameEnum
   name: string
   description: string
-  image: string
   disabled?: boolean
 }
 
@@ -132,8 +121,7 @@ const games: GameCard[] = [
   {
     id: GameEnum.NINETY_SEVEN,
     name: 'Le 97',
-    description: 'Revenez en primaire à faire des calculs mentaux. Attention à ne pas dépasser 97 !',
-    image: ninetySevenImage
+    description: 'Revenez en primaire à faire des calculs mentaux. Attention à ne pas dépasser 97 !'
   }
 ]
 
