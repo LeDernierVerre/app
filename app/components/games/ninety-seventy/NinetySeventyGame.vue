@@ -86,10 +86,7 @@ type NinetySeventyGameResult = {
 
 const props = defineProps<GamePropsData<
   NinetySeventyPrivateData,
-  NinetySeventyPublicData & {
-    isFinished?: boolean
-    gameResult?: NinetySeventyGameResult | null
-  }
+  NinetySeventyPublicData
 >>()
 
 const router = useRouter()
