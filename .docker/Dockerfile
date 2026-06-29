@@ -7,7 +7,7 @@ RUN corepack enable
 COPY package.json ./
 
 # Install dependencies
-RUN npm i
+RUN npm ci
 
 # Copy the entire project
 COPY . ./
