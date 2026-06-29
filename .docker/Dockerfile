@@ -4,7 +4,7 @@ WORKDIR /app
 RUN corepack enable
 
 # Copy package.json and your lockfile
-COPY package.json package-lock.yaml ./
+COPY package.json ./
 
 # Install dependencies
 RUN npm i
