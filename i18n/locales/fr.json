@@ -39,6 +39,10 @@
       "ninetySeven": {
         "title": "Le 97",
         "description": "Le jeu de geudin où faut savoir calculer. Attention à ne pas dépasser 97."
+      },
+      "spotRush": {
+        "title": "Dobble hess",
+        "description": "Comme le dobble, faut trouver les différences le plus vite possible."
       }
     }
   },

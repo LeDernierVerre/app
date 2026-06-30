@@ -34,7 +34,7 @@
             @click="isQrDrawerOpen = false"
           />
 
-          <h2 class="text-2xl font-black text-primary-400">
+          <h2 class="text-2xl font-black text-neutral-50">
             {{ t('home.qrCodeScanner.title') }}
           </h2>
         </div>

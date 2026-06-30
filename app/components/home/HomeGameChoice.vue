@@ -32,39 +32,42 @@
             @click="isCreateDrawerOpen = false"
           />
 
-          <h2 class="text-2xl font-black text-primary-400">
+          <h2 class="text-2xl font-black text-neutral-50">
             {{ t('home.chooseGameTitle') }}
           </h2>
         </div>
 
-        <div class="mt-7 grid gap-3">
+        <div class="relative mt-7 grid gap-4">
           <button
             v-for="game in games"
             :key="game.id"
             type="button"
-            class="group w-full rounded-3xl border border-neutral-700 bg-neutral-800 p-4 text-left transition hover:border-primary-500 hover:bg-neutral-700 disabled:cursor-not-allowed disabled:opacity-60"
+            class="group relative overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-br from-primary-400/20 via-neutral-800 to-secondary-400/10 p-4 text-left shadow-xl shadow-black/20 transition hover:-translate-y-0.5 hover:border-primary-300/50 hover:shadow-primary-950/40 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary-400/50 disabled:cursor-not-allowed disabled:opacity-60"
             :disabled="isBusy || game.disabled"
+            :class="loadingGameId === game.id ? 'pointer-events-none opacity-60' : ''"
             @click="createGameRoom(game.id)"
           >
-            <div class="flex items-center gap-2">
-              <img
-                :src="game.image"
-                :alt="game.name"
-                class="h-25 w-25 shrink-0 object-cover"
-              />
+            <div class="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-primary-300/25 blur-2xl" />
+
+            <div class="relative flex items-center gap-4">
+              <div
+                class="relative grid h-24 w-24 shrink-0 place-items-center rounded-[28px] border border-white/15 bg-white/10 shadow-inner"
+              >
+                <img
+                  :src="game.image"
+                  :alt="t(game.name)"
+                  class="relative h-20 w-20 object-contain drop-shadow-2xl transition duration-200 group-hover:scale-110 group-hover:-rotate-3"
+                />
+              </div>
 
               <div class="min-w-0 flex-1">
-                <div class="flex items-center justify-between gap-3">
-                  <div>
-                    <h3 class="text-lg font-black text-white">
-                      {{ game.name }}
-                    </h3>
+                <h3 class="text-2xl font-black leading-none text-white">
+                  {{ t(game.name) }}
+                </h3>
 
-                    <p class="mt-1 text-sm text-neutral-300">
-                      {{ game.description }}
-                    </p>
-                  </div>
-                </div>
+                <p class="mt-2 line-clamp-2 text-sm font-medium leading-relaxed text-neutral-300">
+                  {{ t(game.description) }}
+                </p>
               </div>
             </div>
           </button>
@@ -95,8 +98,14 @@ type GameCard = {
 const games: GameCard[] = [
   {
     id: GameEnum.NINETY_SEVEN,
-    name: t('home.games.ninetySeven.title'),
-    description: t('home.games.ninetySeven.description'),
+    name: 'home.games.ninetySeven.title',
+    description: 'home.games.ninetySeven.description',
+    image: ninetySevenCover
+  },
+  {
+    id: GameEnum.SPOT_RUSH,
+    name: 'home.games.spotRush.title',
+    description: 'home.games.spotRush.description',
     image: ninetySevenCover
   }
 ]
