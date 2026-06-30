@@ -7,17 +7,17 @@
       content: 'bg-transparent ring-0'
     }"
   >
-    <UButton
-      type="button"
-      block
-      size="xl"
-      color="primary"
-      icon="i-lucide-plus"
-      :disabled="isBusy"
-      class="h-14 rounded-2xl bg-gradient-to-r from-primary-500 to-primary-400 font-black text-white shadow-lg shadow-primary-950/30 transition active:scale-[0.98]"
-    >
-      {{ t('home.createBtn') }}
-    </UButton>
+  <UButton
+    type="button"
+    block
+    size="xl"
+    color="primary"
+    icon="i-lucide-plus"
+    :disabled="isBusy"
+    class="h-14 rounded-2xl text-neutral-300 font-black text-white shadow-lg shadow-primary-950/30 transition hover:bg-primary-800 active:scale-[0.98]"
+  >
+    {{ t('home.createBtn') }}
+  </UButton>
 
     <template #content>
       <div
