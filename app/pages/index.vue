@@ -1,29 +1,29 @@
 <template>
   <main class="relative grid min-h-[calc(100vh-4rem)] place-items-center overflow-hidden px-4 py-8">
-    <div class="pointer-events-none absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-primary-400/15 blur-3xl" />
-    <div class="pointer-events-none absolute -left-20 top-1/3 h-56 w-56 rounded-full bg-secondary-400/10 blur-3xl" />
-    <div class="pointer-events-none absolute -right-24 bottom-20 h-64 w-64 rounded-full bg-primary-500/10 blur-3xl" />
+    <div class="pointer-events-none absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-primary-400/15 blur-3xl blob blob-1" />
+    <div class="pointer-events-none absolute -left-20 top-1/3 h-56 w-56 rounded-full bg-secondary-400/10 blur-3xl blob blob-2" />
+    <div class="pointer-events-none absolute -right-24 bottom-20 h-64 w-64 rounded-full bg-primary-500/10 blur-3xl blob blob-3" />
 
     <div class="relative w-full max-w-md">
-      <div
-        class="rounded-[36px] border border-white/10 bg-neutral-900/80 p-6 text-center shadow-2xl shadow-black/30 backdrop-blur-xl"
-      >
-        <img
-          src="~/assets/images/logo/large.png"
-          alt="Blitzio"
-          class="mx-auto h-40 w-auto object-contain drop-shadow-2xl sm:h-36"
-        />
+      <img
+        src="~/assets/images/logo/large.png"
+        alt="Blitzio"
+        class="mx-auto mb-7 h-28 w-auto object-contain drop-shadow-2xl sm:h-32"
+      />
 
-        <h1 class="mt-5 text-3xl font-black leading-tight text-neutral-50">
+      <div
+        class="home-appear home-appear-2 rounded-[36px] border border-white/10 bg-neutral-900/80 p-6 text-center shadow-2xl shadow-black/30 backdrop-blur-xl"
+      >
+        <h1 class="home-appear home-appear-3 mt-5 text-3xl font-black leading-tight text-neutral-50">
           {{ t('home.title') }}
         </h1>
 
-        <p class="mx-auto mt-2 max-w-xs text-sm font-medium leading-relaxed text-neutral-300">
+        <p class="home-appear home-appear-4 mx-auto mt-2 max-w-xs text-sm font-medium leading-relaxed text-neutral-300">
           {{ t('home.subtitle') }}
         </p>
 
         <form @submit.prevent="join">
-          <div class="mt-7 flex justify-center">
+          <div class="home-appear home-appear-5 mt-7 flex justify-center">
             <UPinInput
               v-model="value"
               :length="6"
@@ -39,7 +39,7 @@
             />
           </div>
 
-          <div class="mt-6 grid grid-cols-[1fr_auto] gap-3">
+          <div class="home-appear home-appear-6 mt-6 grid grid-cols-[1fr_auto] gap-3">
             <UButton
               type="submit"
               block
@@ -47,7 +47,7 @@
               color="primary"
               :loading="isJoiningRoom"
               :disabled="!canJoin || isBusy"
-              class="h-14 rounded-2xl text-neutral-300 font-black text-white shadow-lg shadow-primary-950/30 transition hover:bg-primary-800 active:scale-[0.98]"
+              class="h-14 rounded-2xl bg-primary-900 font-black text-white shadow-lg shadow-primary-950/30 transition hover:bg-primary-800 active:scale-[0.98] disabled:text-white/50"
             >
               {{ t('home.joinBtn') }}
             </UButton>
@@ -60,7 +60,7 @@
           </div>
         </form>
 
-        <div class="my-6 flex items-center gap-3">
+        <div class="home-appear home-appear-7 my-6 flex items-center gap-3">
           <div class="h-px flex-1 bg-white/10" />
 
           <span class="rounded-full bg-white/5 px-3 py-1 text-xs font-black uppercase tracking-wider text-neutral-400">
@@ -70,13 +70,15 @@
           <div class="h-px flex-1 bg-white/10" />
         </div>
 
-        <HomeGameChoice
-          :is-busy="isBusy"
-          @on-game-id="gameId => loadingGameId = gameId"
-        />
+        <div class="home-appear home-appear-8">
+          <HomeGameChoice
+            :is-busy="isBusy"
+            @on-game-id="gameId => loadingGameId = gameId"
+          />
+        </div>
       </div>
 
-      <footer class="mt-5 text-center text-xs font-bold text-neutral-500">
+      <footer class="home-appear home-appear-9 mt-5 text-center text-xs font-bold text-neutral-500">
         Blitzio • {{ packageJSON.version }}
       </footer>
     </div>
@@ -164,3 +166,82 @@ const join = async () => {
   await joinCode(code.value)
 }
 </script>
+
+<style scoped>
+.home-appear {
+  animation: home-appear 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.home-appear-1 {
+  animation-delay: 0.05s;
+}
+
+.home-appear-2 {
+  animation-delay: 0.14s;
+}
+
+.home-appear-3 {
+  animation-delay: 0.22s;
+}
+
+.home-appear-4 {
+  animation-delay: 0.28s;
+}
+
+.home-appear-5 {
+  animation-delay: 0.34s;
+}
+
+.home-appear-6 {
+  animation-delay: 0.4s;
+}
+
+.home-appear-7 {
+  animation-delay: 0.46s;
+}
+
+.home-appear-8 {
+  animation-delay: 0.52s;
+}
+
+.home-appear-9 {
+  animation-delay: 0.58s;
+}
+
+.blob {
+  animation: blob-float 7s ease-in-out infinite;
+}
+
+.blob-2 {
+  animation-delay: -2s;
+}
+
+.blob-3 {
+  animation-delay: -4s;
+}
+
+@keyframes home-appear {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes blob-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -14px, 0) scale(1.06);
+  }
+}
+</style>
