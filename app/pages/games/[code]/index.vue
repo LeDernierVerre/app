@@ -17,12 +17,12 @@
       v-else-if="isLoading && errorMessage"
       class="fixed inset-x-0 top-0 z-[10000] bg-error-500 px-4 py-3 text-center text-sm font-semibold text-white shadow-lg"
     >
-      Impossible de charger la partie
+      {{ t('games.index.error.0') }}
       <button
         class="ml-2 underline underline-offset-2 hover:opacity-80"
         @click="$router.push('/')"
       >
-        Retour à l'accueil
+      {{ t('games.index.error.1') }}
       </button>
 
     </div>
@@ -47,11 +47,11 @@
     <template #content>
       <div class="p-6 text-center">
         <h2 class="mt-5 text-2xl font-black text-neutral-50">
-          Quitter la partie ?
+          {{ t('games.index.leave.title') }}
         </h2>
 
         <p class="mt-2 text-sm text-neutral-300">
-          Tu vas être renvoyé à l’accueil. La partie restera en cours pour les autres joueurs.
+          {{ t('games.index.leave.description') }}
         </p>
 
         <div class="mt-6 grid grid-cols-2 gap-3">
@@ -63,7 +63,7 @@
             class="h-12 rounded-2xl font-bold"
             @click="isLeaveConfirmOpen = false"
           >
-            Annuler
+            {{ t('games.index.leave.cancelBtn') }}
           </UButton>
 
           <UButton
@@ -73,7 +73,7 @@
             class="h-12 rounded-2xl font-bold"
             @click="leaveGame"
           >
-            Quitter
+            {{ t('games.index.leave.confirmBtn') }}
           </UButton>
         </div>
       </div>
@@ -101,6 +101,7 @@ const gameComponents: Record<GameEnum, Component> = {
   [GameEnum.NINETY_SEVEN]: NinetySevenGame
 }
 
+const {t} = useI18n()
 const route = useRoute()
 const router = useRouter()
 
@@ -145,6 +146,7 @@ const onDisconnect = () => {
   isConnected.value = false
 }
 
+// TODO: manage when a player is living
 const onSessionError = ({error}: {error: string}) => {
   errorMessage.value = true;
   console.error(error);

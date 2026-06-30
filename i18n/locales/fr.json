@@ -6,7 +6,7 @@
     "placeholder": "Votre pseudo",
     "confirm": "Continuer",
     "errors": {
-      "tooFewCharacters": "Ton pseudo doit faire au moins 2 caractères.",
+      "tooFewCharacters": "Ton pseudo doit contenir au moins 2 caractères.",
       "internalError": "Impossible de se connecter, réessaie."
     }
   },
@@ -14,37 +14,76 @@
     "title": "Rejoindre une salle",
     "subtitle": "Entre le code à 6 caractères donné par l’hôte.",
     "joinBtn": "Rejoindre",
-    "otherChoice": "ou créer une partie",
+    "otherChoice": "ou",
+    "createBtn": "Créer une partie",
+    "chooseGameTitle": "Choisir un jeu",
+    "qrCodeScanner": {
+      "title": "Scanner un QR code",
+      "openingCamera": "Ouverture de la caméra",
+      "openingError": "Impossible d'ouvrir la caméra"
+    },
     "errors": {
+      "qrCode": {
+        "invalidQrCode": "QR code invalide"
+      },
       "roomNotFound": {
         "title": "Salle introuvable",
-        "subtitle": "Vérifie le code et réessaie",
-        "common": "Impossible de rejoindre la salle"
+        "subtitle": "Vérifie le code et réessaie.",
+        "common": "Impossible de rejoindre la salle."
       },
       "roomCreate": {
-        "common": "Impossible de créer la salle"
+        "common": "Impossible de créer la salle."
+      }
+    },
+    "games": {
+      "ninetySeven": {
+        "title": "Le 97",
+        "description": "Le jeu de geudin où faut savoir calculer. Attention à ne pas dépasser 97."
       }
     }
   },
+  "room": {
+    "title": "Salle {code}",
+    "startBtn": "Lancer la partie",
+    "waitingForHost": "En attente de l'hôte",
+    "leaveBtn": "Quitter la salle",
+    "playersTitle": "Joueurs",
+    "noPlayerFound": "Aucun joueur dans la salle",
+    "code": {
+      "title": "Code de la salle",
+      "qrcodeTitle": "QR Code",
+      "copy": "Code de la salle",
+      "copied": "Code copié"
+    }
+  },
   "games": {
+    "index": {
+      "error": ["Impossible de charger la partie", "Retour à l'accueil"],
+      "leave": {
+        "title": "Quitter la partie ?",
+        "description": "En vrai tu vas casser les couilles parce que les autres pourrons plus jouer",
+        "cancelBtn": "Annuler",
+        "confirmBtn": "Quitter"
+      }
+    },
     "ninetySeventy": {
       "end": {
-        "title": "MAIS NANN",
+        "title": "MAIS NON",
         "backToHome": "Retour à l'accueil"
       },
       "offlinePlayers": {
         "waiting": "En attente",
         "disconnectedLabel": "Déconnecté",
-        "disconnected": "{player} est déconnecté, la parte reprendra quand il revient."
+        "disconnected": "{player} est déconnecté, la partie reprendra quand il reviendra."
       },
       "totalGuess": {
-          "title": "C'était combien ?",
-          "subtitle": "Si tu te trompes tu bois la différence",
-          "confirm": "Valider"
+        "title": "Ça fait combien ?",
+        "subtitle": "Si tu te trompes, tu bois la différence.",
+        "confirm": "Valider"
       },
       "jackChoice": {
         "title": "Valet joué",
-        "subtitle": "Tu choisis +10 ou -10"
+        "subtitle": "Choisis +10 ou -10."
       },
       "turnResult": {
         "title": {
@@ -59,15 +98,15 @@
         },
         "subtitle": {
           "correct": {
-            "self": "Tu avais bien annoncé {total}",
-            "other": "{player} avait bien annoncé {total}"
+            "self": "Tu avais bien annoncé {total}.",
+            "other": "{player} avait bien annoncé {total}."
           },
           "incorrect": {
-            "self": "Tu as annoncé {total}, mais c'était {realTotal}",
-            "other": "{player} a annoncé {total} mais c'était {realTotal}"
+            "self": "Tu as annoncé {total}, mais c'était {realTotal}.",
+            "other": "{player} a annoncé {total}, mais c'était {realTotal}."
           }
         },
-        "confirm": "C bon"
+        "confirm": "C'est bon"
       }
     }
   }
