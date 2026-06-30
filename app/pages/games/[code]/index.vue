@@ -146,7 +146,7 @@ const onDisconnect = () => {
   isConnected.value = false
 }
 
-// TODO: manage when a player is living
+// TODO: manage when a player is leaving
 const onSessionError = ({error}: {error: string}) => {
   errorMessage.value = true;
   console.error(error);
@@ -175,10 +175,6 @@ const leaveGame = async () => {
 
   isLeavingGame.value = true
   isLeaveConfirmOpen.value = false
-
-  socket.emit('game:leave', {
-    code
-  })
 
   disconnect()
 
