@@ -2,7 +2,8 @@
   <PmuGameEnd
     v-model:open="isGameEndOpen"
     :winner="winner"
-    :my-bet="myBet"
+    :results="results"
+    :self-id="selfPlayerId"
     @home="goHome"
   />
 
@@ -22,9 +23,11 @@
 
     <PmuBetChoice
       v-if="!isFinished"
-      v-model="myBet"
+      v-model:suit="betSuit"
+      v-model:bet="betAmount"
       :started="started"
-      @select="makeBet"
+      :is-confirmed="isConfirmed"
+      @confirm="confirmBet"
     />
 
     <div class="pmu-controls">
@@ -53,10 +56,11 @@
 <script setup lang="ts">
 import type { CardSuit } from '~/types/cards'
 import type { GamePropsData } from '~/types/games'
-import type {
-  PmuAction,
-  PmuPrivateData,
-  PmuPublicData
+import {
+  PMU_BET_DEFAULT,
+  type PmuAction,
+  type PmuPrivateData,
+  type PmuPublicData
 } from '~/types/games/pmu'
 
 import { useAuth } from '~/composables/core/useAuth'
@@ -73,7 +77,9 @@ const auth = useAuth()
 const { sendAction } = useGameSocket<PmuAction>()
 
 const publicData = ref<PmuPublicData | null>(null)
-const myBet = ref<CardSuit | null>(null)
+
+const betSuit = ref<CardSuit | null>(null)
+const betAmount = ref<number>(PMU_BET_DEFAULT)
 
 const isGameEndOpen = ref(false)
 
@@ -82,19 +88,29 @@ const selfPlayerId = computed(() => auth.id?.value ?? null)
 const started = computed(() => publicData.value?.started === true)
 const isFinished = computed(() => publicData.value?.isFinished === true)
 const winner = computed(() => publicData.value?.winner ?? null)
+const results = computed(() => publicData.value?.results ?? null)
 
 const isHost = computed(() => {
   const hostId = publicData.value?.hostId
   return !!hostId && !!selfPlayerId.value && hostId === selfPlayerId.value
 })
 
-const makeBet = (suit: CardSuit) => {
-  if (started.value) {
+const isConfirmed = computed(() => {
+  const id = selfPlayerId.value
+  return !!id && !!publicData.value?.choices?.[id]
+})
+
+const confirmBet = () => {
+  if (started.value || !betSuit.value) {
     return
   }
 
-  myBet.value = suit
-  sendAction('make-choice', { cardSuit: suit })
+  sendAction('make-choice', {
+    choice: {
+      cardSuit: betSuit.value,
+      bet: betAmount.value
+    }
+  })
 }
 
 const playRound = () => {
@@ -118,13 +134,14 @@ watch(
 
     publicData.value = data
 
-    // Le pari confirmé par le serveur fait autorité.
+    // Le pari confirmé par le serveur fait autorité (couleur + mise).
     const confirmed = selfPlayerId.value
       ? data.choices?.[selfPlayerId.value]
       : undefined
 
     if (confirmed) {
-      myBet.value = confirmed
+      betSuit.value = confirmed.cardSuit
+      betAmount.value = confirmed.bet
     }
 
     if (data.isFinished) {
@@ -138,7 +155,8 @@ watch(
   () => props.privateData,
   data => {
     if (data?.choice) {
-      myBet.value = data.choice
+      betSuit.value = data.choice.cardSuit
+      betAmount.value = data.choice.bet
     }
   },
   { immediate: true }
@@ -156,7 +174,7 @@ watch(
 }
 
 .pmu-controls {
-  width: min(92vw, 520px);
+  width: min(94vw, 520px);
   margin-top: auto;
 }
 

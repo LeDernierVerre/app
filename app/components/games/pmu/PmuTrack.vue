@@ -90,6 +90,13 @@
             class="ring-2 ring-neutral-950"
           />
         </div>
+
+        <span
+          v-if="totalBetForSuit(meta.suit) > 0"
+          class="bet-total"
+        >
+          {{ t('games.pmu.track.gorgees', { count: totalBetForSuit(meta.suit) }) }}
+        </span>
       </div>
     </div>
   </div>
@@ -98,7 +105,7 @@
 <script setup lang="ts">
 import type { Card, CardSuit } from '~/types/cards'
 import type { GameSessionPlayer } from '~/types/games'
-import { PMU_SUITS, type PmuHandicap } from '~/types/games/pmu'
+import { PMU_SUITS, type PmuChoice, type PmuHandicap } from '~/types/games/pmu'
 import PlayingCard from '../shared/cards/PlayingCard.vue'
 
 const { t } = useI18n()
@@ -109,7 +116,7 @@ const props = withDefaults(defineProps<{
   handicaps?: PmuHandicap[]
   lastDrawnCard?: Card | null
   players?: GameSessionPlayer[]
-  choices?: Record<string, CardSuit>
+  choices?: Record<string, PmuChoice>
   winner?: CardSuit | null
 }>(), {
   stepNumber: 6,
@@ -133,7 +140,15 @@ const bettorsForSuit = (suit: CardSuit): GameSessionPlayer[] => {
   const players = props.players ?? []
   const choices = props.choices ?? {}
 
-  return players.filter(player => choices[player.id] === suit)
+  return players.filter(player => choices[player.id]?.cardSuit === suit)
+}
+
+const totalBetForSuit = (suit: CardSuit): number => {
+  const choices = props.choices ?? {}
+
+  return bettorsForSuit(suit).reduce((sum, player) => {
+    return sum + (choices[player.id]?.bet ?? 0)
+  }, 0)
 }
 </script>
 
@@ -270,6 +285,12 @@ const bettorsForSuit = (suit: CardSuit): GameSessionPlayer[] => {
 
 .bet-avatars > :not(:first-child) {
   margin-left: -0.4rem;
+}
+
+.bet-total {
+  font-size: 0.62rem;
+  font-weight: 900;
+  color: var(--color-primary-300);
 }
 
 .drawn-enter-active,

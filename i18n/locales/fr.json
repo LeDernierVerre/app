@@ -82,11 +82,15 @@
     },
     "pmu": {
       "track": {
-        "lastCard": "Carte retournée"
+        "lastCard": "Carte retournée",
+        "gorgees": "{count} gorgées"
       },
       "bet": {
         "title": "Sur quel cheval tu paries ?",
-        "locked": "Paris fermés, la course est lancée"
+        "locked": "Paris fermés, la course est lancée",
+        "miseLabel": "Gorgées misées",
+        "confirm": "Parier {count} gorgées",
+        "confirmed": "Pari validé ({count} gorgées)"
       },
       "controls": {
         "start": "Lancer la course",
@@ -97,8 +101,8 @@
       "end": {
         "title": "Terminé !",
         "winner": "Cheval gagnant",
-        "youWon": "Bien vu, ton cheval a gagné !",
-        "youLost": "Raté, ton cheval a perdu. Tu bois !",
+        "distributes": "distribue {count} gorgées",
+        "drinks": "boit {count} gorgées",
         "backToHome": "Retour à l'accueil"
       }
     },

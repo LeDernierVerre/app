@@ -7,6 +7,20 @@ export interface PmuHandicap {
   card: Card | null
 }
 
+export interface PmuChoice {
+  cardSuit: CardSuit
+  bet: number
+}
+
+export interface PmuResult {
+  id: string
+  username: string
+  cardSuit: CardSuit
+  bet: number
+  won: boolean
+  gorgees: number
+}
+
 export interface PmuPublicData extends GameData {
   stepNumber?: number
   maxNumberReach?: number
@@ -16,14 +30,19 @@ export interface PmuPublicData extends GameData {
   started?: boolean
   isFinished?: boolean
   winner?: CardSuit | null
-  choices?: Record<string, CardSuit>
+  choices?: Record<string, PmuChoice>
+  results?: PmuResult[] | null
   players?: GameSessionPlayer[]
   hostId?: string | null
 }
 
 export interface PmuPrivateData extends GameData {
-  choice?: CardSuit | null
+  choice?: PmuChoice | null
 }
+
+export const PMU_BET_MIN = 1
+export const PMU_BET_MAX = 10
+export const PMU_BET_DEFAULT = 1
 
 export type PmuAction = 'make-choice' | 'play-round'
 
