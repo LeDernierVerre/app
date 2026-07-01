@@ -5,7 +5,7 @@ export const useApi = () => {
 
   const api = $fetch.create({
     baseURL: config.public.apiBase,
-
+    
     onRequest({ options }) {
       if (token.value) {
         options.headers = {

@@ -49,8 +49,8 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
     public: {
-      socketUrl: '',
-      apiBase: ''
+      socketUrl: process.env.NUXT_PUBLIC_SOCKET_URL,
+      apiBase: process.env.NUXT_PUBLIC_API_BASE,
     }
   }
 })

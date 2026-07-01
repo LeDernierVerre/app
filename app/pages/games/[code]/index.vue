@@ -94,11 +94,13 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
 import NinetySevenGame from '~/components/games/ninety-seven/NinetySevenGame.vue'
+import PmuGame from '~/components/games/pmu/PmuGame.vue'
 import { useSocket } from '~/composables/core/useSocket'
 import { GameEnum, type GameData } from '~/types/games'
 
-const gameComponents: Record<GameEnum, Component> = {
-  [GameEnum.NINETY_SEVEN]: NinetySevenGame
+const gameComponents: Partial<Record<GameEnum, Component>> = {
+  [GameEnum.NINETY_SEVEN]: NinetySevenGame,
+  [GameEnum.PMU]: PmuGame
 }
 
 const {t} = useI18n()

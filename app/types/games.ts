@@ -1,6 +1,6 @@
 export enum GameEnum {
     NINETY_SEVEN = "ninety-seven",
-    PMU = "PMU",
+    PMU = "pmu",
     SPOT_RUSH = "spot-rush"
 }
 

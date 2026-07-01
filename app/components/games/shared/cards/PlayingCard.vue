@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import type { CardRank } from '~/types/cards'
 import { CardSuit } from '~/types/cards'
 
-type CardSize = 'sm' | 'md' | 'lg'
+type CardSize = 'xs' | 'sm' | 'md' | 'lg'
 
 type PipPosition = {
   x: number
@@ -57,6 +57,7 @@ const suitData = computed(() => suits[props.suit])
 const isFigure = computed(() => ['J', 'Q', 'K'].includes(props.rank))
 
 const sizeClass = computed(() => ({
+  xs: 'card-xs',
   sm: 'card-sm',
   md: 'card-md',
   lg: 'card-lg',
@@ -211,6 +212,11 @@ const pips = computed(() => pipLayouts[props.rank] ?? [])
 
 .playing-card.selected {
   translate: 0 -10px;
+}
+
+.card-xs {
+  width: 44px;
+  font-size: 8px;
 }
 
 .card-sm {
